@@ -11,6 +11,7 @@ var apkFile = tl.getPathInput("apkFile", true);
 var track = tl.getInput("track", true);
 var userFraction = tl.getInput("userFraction", false); // Used for staged rollouts
 var changeLogFile = tl.getInput("changeLogFile", false);
+var languageCode = tl.getInput("language", true);
 
 // Constants
 var GOOGLE_PLAY_SCOPES = ["https://www.googleapis.com/auth/androidpublisher"];
@@ -203,9 +204,9 @@ function addChangelog(changeLogFile) {
     tl.debug("Adding changelog file: " + changeLogFile);
     var requestParameters = {
         apkVersionCode: globalParams.params.apkVersionCode,
-        language: "en-US",
+        language: languageCode,
         resource: {
-            language: "en-US",
+            language: languageCode,
             recentChanges: fs.readFileSync(changeLogFile)
         }
     };
